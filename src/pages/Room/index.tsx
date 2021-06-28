@@ -1,15 +1,15 @@
 import { FormEvent, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 
-import { Button } from '../components/Button';
-import { Question } from '../components/Question';
-import { RoomCode } from '../components/RoomCode';
-import { useAuth } from '../hooks/useAuth';
-import { database } from '../services/firebase';
+import { Button } from '../../components/Button';
+import { Question } from '../../components/Question';
+import { RoomCode } from '../../components/RoomCode';
+import { useAuth } from '../../hooks/useAuth';
+import { database } from '../../services/firebase';
 
-import logoImg from '../assets/images/logo.svg';
+import logoImg from '../../assets/images/logo.svg';
 
-import '../styles/room.scss';
+import './styles.scss';
 
 type FirebaseQuestions = Record<string, {
   author: {
