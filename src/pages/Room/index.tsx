@@ -66,6 +66,10 @@ export function Room() {
   }
 
   async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+    if (!user) {
+      return alert('You must be logged to like a question');
+    }
+
     if (likeId) {
       return await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
     }
