@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
@@ -65,7 +65,9 @@ export function AdminRoom() {
     <>
       <Header>
         <HeaderContent>
-          <Logo src={logoImg} alt="letmeask" />
+          <Link to='/'>
+            <Logo src={logoImg} alt="letmeask" />
+          </Link>
           <RoomCodeCloseButton>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>

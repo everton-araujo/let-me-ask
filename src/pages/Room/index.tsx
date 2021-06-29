@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
@@ -26,6 +27,7 @@ import {
   UserName,
   QuestionList,
   Logo,
+  RoomCodeCloseButton,
 } from'../../styles/room';
 
 type RoomParams = {
@@ -83,11 +85,15 @@ export function Room() {
     <>
       <Header>
         <HeaderContent>
-          <Logo src={logoImg} alt="letmeask" />
-          <RoomCode code={roomId} />
-          {
-            user && <Button onClick={signOut}>Sair</Button>
-          }
+          <Link to='/'>
+            <Logo src={logoImg} alt="letmeask" />
+          </Link>
+          <RoomCodeCloseButton>
+            <RoomCode code={roomId} />
+            {
+              user && <Button onClick={signOut}>Sair</Button>
+            }
+          </RoomCodeCloseButton>
         </HeaderContent>
       </Header>
 
