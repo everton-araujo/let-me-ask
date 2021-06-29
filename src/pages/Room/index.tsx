@@ -10,7 +10,23 @@ import { useRoom } from '../../hooks/useRoom';
 
 import logoImg from '../../assets/images/logo.svg';
 
-import '../../styles/room.scss';
+import {
+  Header,
+  Main,
+  RoomTitleContainer,
+  RoomTitle,
+  RoomText,
+  Form,
+  FormFooter,
+  FooterText,
+  FooterButton,
+  UserInfo,
+  HeaderContent,
+  UserImg,
+  UserName,
+  QuestionList,
+  Logo,
+} from'../../styles/room';
 
 type RoomParams = {
   id: string;
@@ -60,54 +76,54 @@ export function Room() {
   }
 
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="letmeask" />
+    <>
+      <Header>
+        <HeaderContent>
+          <Logo src={logoImg} alt="letmeask" />
           <RoomCode code={roomId} />
           {
             user && <Button onClick={signOut}>Sair</Button>
           }
-        </div>
-      </header>
+        </HeaderContent>
+      </Header>
 
-      <main>
-        <div className="room-title">
-          <h1>Sala {title}</h1>
+      <Main>
+        <RoomTitleContainer>
+          <RoomTitle>Sala {title}</RoomTitle>
           { 
             questions.length > 0 && (
               questions.length === 1 
-                ? <span>{questions.length} pergunta</span> 
-                : <span>{questions.length} perguntas</span> 
+                ? <RoomText>{questions.length} pergunta</RoomText> 
+                : <RoomText>{questions.length} perguntas</RoomText> 
             )
           }
-        </div>
+        </RoomTitleContainer>
 
-        <form onSubmit={handleSendQuestion}>
+        <Form onSubmit={handleSendQuestion}>
           <textarea
             placeholder="O que você quer perguntar?"
             onChange={event => setNewQuestion(event.target.value)}
             value={newQuestion}
           />
 
-          <div className="form-footer">
+          <FormFooter>
             {
               user ? (
-                <div className="user-info">
-                  <img src={user.avatar} alt={user.name} />
-                  <span>{user.name}</span>
-                </div>
+                <UserInfo>
+                  <UserImg src={user.avatar} alt={user.name} />
+                  <UserName>{user.name}</UserName>
+                </UserInfo>
               ) : (
-                <span>
-                  Para enviar uma pergunta, <button onClick={signInWithGoogle}>faça seu login</button>
-                </span>
+                <FooterText>
+                  Para enviar uma pergunta, <FooterButton onClick={signInWithGoogle}>faça seu login</FooterButton>
+                </FooterText>
               )
             }
             <Button type="submit" disabled={!user}>Enviar pergunta</Button>
-          </div>
-        </form>
+          </FormFooter>
+        </Form>
 
-        <div className="question-list">
+        <QuestionList>
           {questions.map(question => {
             return (
               <Question 
@@ -137,8 +153,8 @@ export function Room() {
               </Question>
             );
           })}
-        </div>
-      </main>
-    </div>
+        </QuestionList>
+      </Main>
+    </>
   );
 }

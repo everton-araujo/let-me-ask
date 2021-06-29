@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
@@ -9,7 +9,21 @@ import { Button } from '../../components/Button';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 
-import '../../styles/auth.scss';
+import {
+  Container,
+  Aside,
+  AsideImg,
+  AsideStrongText,
+  AsideText,
+  Main,
+  MainContent,
+  MainImg,
+  MainText,
+  FormInput,
+  Form,
+  MainExistentRoomText,
+  MainExistentRoomLink
+} from '../../styles/auth';
 
 export function NewRoom() {
   const { user } = useAuth();
@@ -34,20 +48,20 @@ export function NewRoom() {
   }
 
   return (
-    <div id='page-auth'>
-      <aside>
-        <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas de sua audiência em tempo real</p>
-      </aside>
+    <Container>
+      <Aside>
+        <AsideImg src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
+        <AsideStrongText>Crie salas de Q&amp;A ao-vivo</AsideStrongText>
+        <AsideText>Tire as dúvidas de sua audiência em tempo real</AsideText>
+      </Aside>
 
-      <main>
-        <div className='main-content'>
-          <img src={logoImg} alt="Letmeask" />
-          <h2>Criar uma nova sala</h2>
+      <Main>
+        <MainContent>
+          <MainImg src={logoImg} alt="Letmeask" />
+          <MainText>Criar uma nova sala</MainText>
 
-          <form onSubmit={handleCreateRoom}>
-            <input
+          <Form onSubmit={handleCreateRoom}>
+            <FormInput
               type="text"
               placeholder='Nome da sala'
               onChange={event => setNewRoom(event.target.value)}
@@ -57,13 +71,13 @@ export function NewRoom() {
             <Button type='submit'>
               Criar sala
             </Button>
-          </form>
+          </Form>
 
-          <p>
-            Quer entrar em uma sala existente? <Link to='/'>clique aqui</Link>
-          </p>
-        </div>
-      </main>
-    </div>
+          <MainExistentRoomText>
+            Quer entrar em uma sala existente? <MainExistentRoomLink to='/'>clique aqui</MainExistentRoomLink>
+          </MainExistentRoomText>
+        </MainContent>
+      </Main>
+    </Container>
   );
 }

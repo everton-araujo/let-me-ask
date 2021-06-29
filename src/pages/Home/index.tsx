@@ -10,7 +10,21 @@ import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
 
-import '../../styles/auth.scss';
+import {
+  Container,
+  Aside,
+  AsideImg,
+  AsideStrongText,
+  AsideText,
+  Main,
+  MainContent,
+  MainImg,
+  Separator,
+  Form,
+  FormInput,
+  CreateRoomButton,
+  CreateRoomImg,
+} from '../../styles/auth';
 
 export function Home() {
   const history = useHistory();
@@ -48,27 +62,27 @@ export function Home() {
   }
 
   return (
-    <div id='page-auth'>
-      <aside>
-        <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
+    <Container>
+      <Aside>
+        <AsideImg src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
 
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas de sua audiência em tempo real</p>
-      </aside>
+        <AsideStrongText>Crie salas de Q&amp;A ao-vivo</AsideStrongText>
+        <AsideText>Tire as dúvidas de sua audiência em tempo real</AsideText>
+      </Aside>
 
-      <main>
-        <div className='main-content'>
-          <img src={logoImg} alt="Letmeask" />
+      <Main>
+        <MainContent>
+          <MainImg src={logoImg} alt="Letmeask" />
 
-          <button onClick={handleCreateRoom} className='create-room'>
-            <img src={googleIconImg} alt="Logo do google" />
+          <CreateRoomButton onClick={handleCreateRoom}>
+            <CreateRoomImg src={googleIconImg} alt="Logo do google" />
             Crie sua sala com o Google
-          </button>
+          </CreateRoomButton>
 
-          <div className='separator'>ou entre em uma sala</div>
+          <Separator>ou entre em uma sala</Separator>
 
-          <form onSubmit={handleJoinRoom}>
-            <input
+          <Form onSubmit={handleJoinRoom}>
+            <FormInput
               type="text" 
               placeholder="Digite o código da sala"
               onChange={event => setRoomCode(event.target.value)}
@@ -78,9 +92,9 @@ export function Home() {
             <Button type="submit">
               Entrar na sala
             </Button>
-          </form>
-        </div>
-      </main>
-    </div>
+          </Form>
+        </MainContent>
+      </Main>
+    </Container>
   );
 }

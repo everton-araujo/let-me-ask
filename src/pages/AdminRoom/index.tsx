@@ -12,7 +12,17 @@ import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
 
-import '../../styles/room.scss';
+import {
+  Header,
+  Main,
+  Logo,
+  RoomCodeCloseButton,
+  RoomTitleContainer,
+  RoomTitle,
+  RoomText,
+  HeaderContent,
+  QuestionList,
+} from'../../styles/room';
 
 type RoomParams = {
   id: string;
@@ -52,30 +62,30 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="letmeask" />
-          <div>
+    <>
+      <Header>
+        <HeaderContent>
+          <Logo src={logoImg} alt="letmeask" />
+          <RoomCodeCloseButton>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
-          </div>
-        </div>
-      </header>
+          </RoomCodeCloseButton>
+        </HeaderContent>
+      </Header>
 
-      <main>
-        <div className="room-title">
-          <h1>Sala {title}</h1>
+      <Main>
+        <RoomTitleContainer>
+          <RoomTitle>Sala {title}</RoomTitle>
           { 
             questions.length > 0 && (
               questions.length === 1 
-                ? <span>{questions.length} pergunta</span> 
-                : <span>{questions.length} perguntas</span> 
+                ? <RoomText>{questions.length} pergunta</RoomText> 
+                : <RoomText>{questions.length} perguntas</RoomText> 
             )
           }
-        </div>
+        </RoomTitleContainer>
 
-        <div className="question-list">
+        <QuestionList>
           {questions.map(question => {
             return (
               <Question 
@@ -112,8 +122,8 @@ export function AdminRoom() {
               </Question>
             );
           })}
-        </div>
-      </main>
-    </div>
+        </QuestionList>
+      </Main>
+    </>
   );
 }
