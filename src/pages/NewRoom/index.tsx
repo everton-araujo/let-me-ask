@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../hooks/useTheme';
 
 import { Button } from '../../components/Button';
 
@@ -29,6 +30,7 @@ export function NewRoom() {
   const { user } = useAuth();
   const history = useHistory();
   const [newRoom, setNewRoom] = useState('');
+  const { theme } = useTheme();
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
@@ -48,7 +50,7 @@ export function NewRoom() {
   }
 
   return (
-    <Container>
+    <Container className={theme}>
       <Aside>
         <AsideImg src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <AsideStrongText>Crie salas de Q&amp;A ao-vivo</AsideStrongText>
@@ -58,7 +60,7 @@ export function NewRoom() {
       <Main>
         <MainContent>
           <MainImg src={logoImg} alt="Letmeask" />
-          <MainText>Criar uma nova sala</MainText>
+          <MainText className={theme}>Criar uma nova sala</MainText>
 
           <Form onSubmit={handleCreateRoom}>
             <FormInput
@@ -68,7 +70,7 @@ export function NewRoom() {
               value={newRoom}
             />
 
-            <Button type='submit'>
+            <Button type='submit' className={theme}>
               Criar sala
             </Button>
           </Form>

@@ -5,6 +5,10 @@ export const Container = styled.div`
   display: flex;
   align-items: stretch;
   height: 100vh;
+
+  &.dark {
+    background: #474747;
+  }
 `;
 
 export const CreateRoomButton = styled.button`
@@ -31,6 +35,10 @@ export const CreateRoomButton = styled.button`
 
 export const CreateRoomImg = styled.img`
   margin-right: 8px;
+
+  &.dark {
+    color: #333;
+  }
 `;
 
 export const Aside = styled.aside`
@@ -67,8 +75,25 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   
   padding: 0 32px;
+`;
+
+export const ThemeButton = styled.button`
+  margin-top: -100px;
+  margin-bottom: 75px;
+  
+  width: 110px;
+  height: 30px;
+  border-radius: 18px;
+  border: 0;
+  background: #835AFD;
+  color: #FFF;
+
+  &.dark {
+    color: #222;
+  }
 `;
 
 export const MainContent = styled.div`
@@ -88,6 +113,10 @@ export const MainText = styled.h2`
   font-size: 24px;
   margin: 64px 0 24px;
   font-family: 'Poppins', sans-serif;
+
+  &.dark {
+    color: #FFF;
+  }
 `;
 
 export const MainExistentRoomText = styled.p`
@@ -132,6 +161,10 @@ export const Form = styled.form`
 
   button, input {
     width: 100%;
+  }
+
+  button.dark {
+    color: #222;
   }
 `;
 

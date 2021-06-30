@@ -5,6 +5,7 @@ import { Button } from '../../components/Button';
 
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../hooks/useTheme';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
@@ -18,6 +19,7 @@ import {
   AsideText,
   Main,
   MainContent,
+  ThemeButton,
   MainImg,
   Separator,
   Form,
@@ -30,6 +32,7 @@ export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState('');
+  const { theme, toggleTheme } = useTheme();
 
   async function handleCreateRoom() {
     if(!user) {
@@ -62,7 +65,7 @@ export function Home() {
   }
 
   return (
-    <Container>
+    <Container className={theme}>
       <Aside>
         <AsideImg src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
 
@@ -71,6 +74,7 @@ export function Home() {
       </Aside>
 
       <Main>
+        <ThemeButton onClick={toggleTheme} className={theme}>Trocar Tema</ThemeButton>
         <MainContent>
           <MainImg src={logoImg} alt="Letmeask" />
 
@@ -80,7 +84,7 @@ export function Home() {
           </CreateRoomButton>
 
           <Separator>ou entre em uma sala</Separator>
-
+ 
           <Form onSubmit={handleJoinRoom}>
             <FormInput
               type="text" 
@@ -89,7 +93,7 @@ export function Home() {
               value={roomCode}
             />
 
-            <Button type="submit">
+            <Button type="submit" className={theme}>
               Entrar na sala
             </Button>
           </Form>
